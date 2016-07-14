@@ -1,0 +1,23 @@
+ffmpeg -f x11grab -video_size 1280x720 -framerate 30 -i :0.0+0,0 \-f v4l2 -video_size 320x240 -framerate 30 -i /dev/video0 -f alsa -ac 2 -i hw:0,0 -i /home/omar/Downloads/10300170_730712716990481_2047723355544821472_n.jpg -filter_complex \"[0:v]scale=1024:-1,setpts=PTS-STARTPTS[bg]; \ [1:v]scale=120:-1,setpts=PTS-STARTPTS[fg]; \ [bg][fg]overlay=W-w-10:10[bg2]; \ [bg2][3:v]overlay=W-w-10:H-h-10,format=yuv420p[out]"-map "[out]" -map 2:a -vcodec libx264 -preset veryfast \-maxrate 3000k -bufsize 4000k -c:a aac -b:a 160k -ar 44100 -b:a 128k \-f flv rtmp://a.rtmp.youtube.com/live2/
+ffmpeg -f x11grab -video_size 1280x720  -framerate 30 -i :0.0 -f v4l2 -video_size 320x240 -framerate 30 -i /dev/video1 -f alsa -ac 2 -i hw:0,0 -i /home/omar/Downloads/logo/coding.png -filter_complex "[0:v]scale=1024:-1,setpts=PTS-STARTPTS[bg];  [1:v]scale=120:-1,setpts=PTS-STARTPTS[fg]; [bg][fg]overlay=W-w-10:10[bg2];  [bg2][3:v]overlay=W-w-10:H-h-10,format=yuv420p[out]" -map "[out]" -map 2:a -vcodec libx264 -preset veryfast -maxrate 3000k -bufsize 4000k -c:a mp3 -b:a 160k -ar 44100 -b:a 128k -f flv rtmp://a.rtmp.youtube.com/live2/
+ffmpeg -f x11grab -video_size 640*480  -framerate 10 -i :0.0 -f v4l2 -video_size  160x120 -framerate 1 -i /dev/video1 -f alsa -ac 2 -i hw:0,0 -i /home/omar/Downloads/logo/coding.png -filter_complex "[0:v]scale=1024:-1,setpts=PTS-STARTPTS[bg];  [1:v]scale=120:-1,setpts=PTS-STARTPTS[fg]; [bg][fg]overlay=W-w-10:10[bg2];  [bg2][3:v]overlay=W-w-10:H-h-10,format=yuv420p[out]" -map "[out]" -map 2:a -vcodec libx264 -preset ultrafast -maxrate 3000k -bufsize 4000k -c:a mp3 -b:a 160k -ar 44100 -b:a 128k -f flv rtmp://a.rtmp.youtube.com/live2/
+ffmpeg -f alsa -ac 2 -i hw:0,0 -f x11grab -framerate 10 -video_size 1280x720 -i :0.0+0,0 -vcodec libx264 -preset veryfast -maxrate 1984k -bufsize 3968k -vf "format=yuv420p" -g 60 -c:a mp3 -b:a 128k -ar 44100 -f flv rtmp://a.rtmp.youtube.com/live2/
+
+ffmpeg -f x11grab -video_size 1280x720 -framerate 30 -i :0.0 -f v4l2 -video_size 320x240 -framerate 30 -i /dev/video1 -f alsa -ac 2 -i hw:0,0 -filter_complex "[0:v]scale=1024:-1,setpts=PTS-STARTPTS[bg];  [1:v]scale=120:-1,setpts=PTS-STARTPTS[fg];  [bg][fg]overlay=W-w-10:10,format=yuv420p[out]" -map "[out]" -map 2:a -vcodec libx264 -preset veryfast -maxrate 3000k -bufsize 4000k -c:a mp3 -b:a 160k -ar 44100 -f flv out.mp4
+
+
+ffmpeg -f x11grab -video_size 1280x720  -framerate 10 -i :0.0 -f v4l2 -video_size 120x240 -framerate 10 -i /dev/video1 -f alsa -ac 2 -i hw:0,0 -i /home/omar/Downloads/logo/coding.png -filter_complex "[0:v]scale=1024:-1,setpts=PTS-STARTPTS[bg];  [1:v]scale=120:-1,setpts=PTS-STARTPTS[fg]; [bg][fg]overlay=W-w-10:10[bg2];  [bg2][3:v]overlay=W-w-10:H-h-10,format=yuv420p[out]" -map "[out]" -map 2:a -vcodec libx264 -preset ultrafast -framerate 10 -maxrate 1000k -bufsize 1000k -c:a mp3 -b:a 160k -ar 44100 -b:a 128k out1.mp4
+
+
+ffmpeg -f x11grab -video_size 1280x720  -framerate 30 -i :0.0 -f v4l2 -video_size 120x240 -framerate 30 -i /dev/video1 -f alsa -ac 2 -i hw:0,0 -i /home/omar/Downloads/logo/coding.png -filter_complex "[0:v]scale=1024:-1,setpts=PTS-STARTPTS[bg];  [1:v]scale=120:-1,setpts=PTS-STARTPTS[fg]; [bg][fg]overlay=W-w-10:10[bg2];  [bg2][3:v]overlay=W-w-10:H-h-10,format=yuv420p[out]" -map "[out]" -map 2:a -vcodec libx264 -preset ultrafast -framerate 10 -maxrate 500k -bufsize 1000k -c:a mp3 -b:a 160k -ar 44100 -b:a 128k out1.mp4
+
+
+
+
+
+
+
+
+#Reord Voice :D 
+ ffmpeg -f alsa -i hw:0,0 -t 5 out.wav
+
